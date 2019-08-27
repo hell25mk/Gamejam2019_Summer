@@ -6,14 +6,14 @@ public class Player : MonoBehaviour
 {
 
     private float upSpeed;    //速度(縦)
-    private float sideSpeed;  //速度(横)
+    private float slideSpeed;  //速度(横)
     Vector2 pos;            //位置座標
 
     // Start is called before the first frame update
     void Start()
     {
         upSpeed = 0.01f;
-        sideSpeed = 0.02f;
+        slideSpeed = 0.02f;
         pos = transform.position;
 
     }
@@ -32,11 +32,11 @@ public class Player : MonoBehaviour
     //右に移動
     public void MoveRight()
     {
-        pos.x += sideSpeed;
+        pos.x += slideSpeed;
     }
     //左に移動
     public void MoveLeft()
     {
-        pos.x -= sideSpeed;
+        pos.x -= slideSpeed;
     }
 }
