@@ -5,23 +5,38 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    private float speed;    //速度
-    Player player;
+    private float upSpeed;    //速度(縦)
+    private float sideSpeed;  //速度(横)
+    Vector2 pos;            //位置座標
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        upSpeed = 0.01f;
+        sideSpeed = 0.02f;
+        pos = transform.position;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        transform.position = pos;
     }
 
-    void AutoMove()
+    //縦に自動で移動
+    public void AutoMove()
     {
-        
+        pos.y += upSpeed;
+    }
+    //右に移動
+    public void MoveRight()
+    {
+        pos.x += sideSpeed;
+    }
+    //左に移動
+    public void MoveLeft()
+    {
+        pos.x -= sideSpeed;
     }
 }
