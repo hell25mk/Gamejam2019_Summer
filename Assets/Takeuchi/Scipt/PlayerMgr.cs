@@ -4,24 +4,30 @@ using UnityEngine;
 
 public class PlayerMgr : MonoBehaviour
 {
-    public GameObject man;
-    public GameObject woman;
     float fallCnt;          //転ぶまでのカウント
     const float fallCntLimit = 0.5f;     //転ぶまでカウントの上限値
     float fallTimeCnt;         //転んでいる時間のカウント
     const float fallTimeCntLimit = 1.0f;    //転んでいるカウントの上限値
 
     private bool isFall;    //転倒フラグ true:転んでいる false:起きている
+    public int falledCnt;     //転んだ回数
+
+    [SerializeField]
+    private float upSpeed;    //速度(縦)
+    [SerializeField]
+    private float slideSpeed;  //速度(横)
+    Vector2 pos;            //位置座標
 
     // Start is called before the first frame update
     void Start()
     {
-        man = GameObject.Find("Man");
-        woman = GameObject.Find("Woman");
-
         fallCnt = 0.0f;
         fallTimeCnt = 0.0f;
         isFall = false;
+
+        upSpeed = 0.01f;
+        slideSpeed = 0.02f;
+        pos = transform.position;
     }
 
     // Update is called once per frame
@@ -29,6 +35,9 @@ public class PlayerMgr : MonoBehaviour
     {
         // 状態の更新
         StateMgr();
+
+        //座標の更新
+        transform.position = pos;
 
         // 転んでいなければ自動で移動
         if (isFall == false)
@@ -63,6 +72,7 @@ public class PlayerMgr : MonoBehaviour
             if (fallCnt >= fallCntLimit)
             {
                 isFall = true;
+                falledCnt++;
                 fallCnt = 0.0f;
             }
         }
@@ -85,20 +95,17 @@ public class PlayerMgr : MonoBehaviour
     //上　自動移動
     void UpMove()
     {
-        woman.GetComponent<Player>().AutoMove();
-        man.GetComponent<Player>().AutoMove();
+        pos.y += upSpeed;
     }
     //左
     void MoveLeft()
     {
-        woman.GetComponent<Player>().MoveLeft();
-        man.GetComponent<Player>().MoveLeft();
+        pos.x -= slideSpeed;
     }
     //右
     void MoveRight()
     {
-        woman.GetComponent<Player>().MoveRight();
-        man.GetComponent<Player>().MoveRight();
+        pos.x += slideSpeed;
     }
 
 

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
+    [SerializeField]
     private float upSpeed;    //速度(縦)
+    [SerializeField]
     private float slideSpeed;  //速度(横)
     Vector2 pos;            //位置座標
 
