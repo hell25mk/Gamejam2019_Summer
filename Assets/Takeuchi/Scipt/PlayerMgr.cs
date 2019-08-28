@@ -6,7 +6,7 @@ public class PlayerMgr : MonoBehaviour
 {
     private float fallCnt;          //転ぶまでのカウント
     [SerializeField]
-    private const float fallCntLimit = 0.8f;     //転ぶまでカウントの上限値
+    private const float fallCntLimit = 0.4f;     //転ぶまでカウントの上限値
     private float fallTimeCnt;         //転んでいる時間のカウント
     [SerializeField]
     private const float fallTimeCntLimit = 1.0f;    //転んでいるカウントの上限値

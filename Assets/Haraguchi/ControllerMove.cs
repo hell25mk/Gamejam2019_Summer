@@ -139,7 +139,7 @@ public class ControllerMove : MonoBehaviour
         pPos.y = playerMgr.GetPosY();
 
         var xx = pos.x - pPos.x;
-        var yy = pos.y - pPos.y;
+        var yy = (pos.y - pPos.y) * 1.3 ;
         var aR = 0.5;
         var pR = 4.5;
 
