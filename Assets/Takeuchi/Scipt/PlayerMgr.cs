@@ -5,8 +5,10 @@ using UnityEngine;
 public class PlayerMgr : MonoBehaviour
 {
     float fallCnt;          //転ぶまでのカウント
-    const float fallCntLimit = 0.5f;     //転ぶまでカウントの上限値
+    [SerializeField]
+    const float fallCntLimit = 0.8f;     //転ぶまでカウントの上限値
     float fallTimeCnt;         //転んでいる時間のカウント
+    [SerializeField]
     const float fallTimeCntLimit = 1.0f;    //転んでいるカウントの上限値
 
     private bool isFall;    //転倒フラグ true:転んでいる false:起きている
@@ -18,6 +20,10 @@ public class PlayerMgr : MonoBehaviour
     private float slideSpeed;  //速度(横)
     Vector2 pos;            //位置座標
 
+    SpriteRenderer MainSpriteRenderer;
+    public Sprite fallSprite;
+    public Sprite run;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +34,8 @@ public class PlayerMgr : MonoBehaviour
         upSpeed = 0.01f;
         slideSpeed = 0.02f;
         pos = transform.position;
+
+        MainSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -72,6 +80,7 @@ public class PlayerMgr : MonoBehaviour
             if (fallCnt >= fallCntLimit)
             {
                 isFall = true;
+                MainSpriteRenderer.sprite = fallSprite;
                 falledCnt++;
                 fallCnt = 0.0f;
             }
@@ -87,6 +96,7 @@ public class PlayerMgr : MonoBehaviour
             if(fallTimeCnt >= fallTimeCntLimit)
             {
                 isFall = false;
+                MainSpriteRenderer.sprite = run;
                 fallTimeCnt = 0.0f;
             }
         }
