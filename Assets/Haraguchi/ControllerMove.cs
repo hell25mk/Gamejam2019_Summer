@@ -85,50 +85,70 @@ public class ControllerMove : MonoBehaviour
         //buttons
         if (Input.GetKeyDown(KeyCode.Joystick1Button0))
         {
-            Debug.Log("kuro");
             if (gimmickRiyasuto[(int)eGimmickType.Gimmick_Daruma] >= maxRiyasutoTime[(int)eGimmickType.Gimmick_Daruma])
             {
-                Instantiate(gimmikcList[(int)eGimmickType.Gimmick_Daruma], AimingPosition, Quaternion.identity);
-                gimmickRiyasuto[(int)eGimmickType.Gimmick_Daruma] = 0f;
-               
+                if (GimickPushCheck())
+                {
+                    Instantiate(gimmikcList[(int)eGimmickType.Gimmick_Daruma], AimingPosition, Quaternion.identity);
+                    gimmickRiyasuto[(int)eGimmickType.Gimmick_Daruma] = 0f;
+                }
             }
         }
         if (Input.GetKeyDown(KeyCode.Joystick1Button1))
         {
-            Debug.Log("kiiro");
             if (gimmickRiyasuto[(int)eGimmickType.Gimmick_BalanceBall] >= maxRiyasutoTime[(int)eGimmickType.Gimmick_BalanceBall])
             {
-                Instantiate(gimmikcList[(int)eGimmickType.Gimmick_BalanceBall], AimingPosition, Quaternion.identity);
-                gimmickRiyasuto[(int)eGimmickType.Gimmick_BalanceBall] = 0f;
+                if (GimickPushCheck())
+                {
+                    Instantiate(gimmikcList[(int)eGimmickType.Gimmick_BalanceBall], AimingPosition, Quaternion.identity);
+                    gimmickRiyasuto[(int)eGimmickType.Gimmick_BalanceBall] = 0f;
+                }
             }
         }
         if (Input.GetKeyDown(KeyCode.Joystick1Button2))
         {
-            Debug.Log("ao");
             if (gimmickRiyasuto[(int)eGimmickType.Gimmick_Bicycle] >= maxRiyasutoTime[(int)eGimmickType.Gimmick_Bicycle])
             {
-                Instantiate(gimmikcList[(int)eGimmickType.Gimmick_Bicycle], AimingPosition, Quaternion.identity);
-                gimmickRiyasuto[(int)eGimmickType.Gimmick_Bicycle] = 0f;
+                if (GimickPushCheck())
+                {
+                    Instantiate(gimmikcList[(int)eGimmickType.Gimmick_Bicycle], AimingPosition, Quaternion.identity);
+                    gimmickRiyasuto[(int)eGimmickType.Gimmick_Bicycle] = 0f;
+
+                }
             }
         }
         if (Input.GetKeyDown(KeyCode.Joystick1Button3))
         {
-            Debug.Log("aka");
             if (gimmickRiyasuto[(int)eGimmickType.Gimmick_Skateboard] >= maxRiyasutoTime[(int)eGimmickType.Gimmick_Skateboard])
             {
-                Instantiate(gimmikcList[(int)eGimmickType.Gimmick_Skateboard], AimingPosition, Quaternion.identity);
-                gimmickRiyasuto[(int)eGimmickType.Gimmick_Skateboard] = 0f;
+                if (GimickPushCheck())
+                {
+                    Instantiate(gimmikcList[(int)eGimmickType.Gimmick_Skateboard], AimingPosition, Quaternion.identity);
+                    gimmickRiyasuto[(int)eGimmickType.Gimmick_Skateboard] = 0f;
+                }
             }
         }
     }
 
     bool GimickPushCheck()
     {
-        //Transform pos = this.transform;
-        //Transform playerPos;
-        //float playerPos.x = playerMgr.GetPosX;
+        
+        Vector2 pos = transform.position;
+        Vector2 pPos;
+        pPos.x = playerMgr.GetPosX();
+        pPos.y = playerMgr.GetPosY();
 
-        return false;
+        var xx = pos.x - pPos.x;
+        var yy = pos.y - pPos.y;
+        var aR = 0.5;
+        var pR = 4.5;
+
+        if ( (xx * xx + yy * yy) < (aR + pR)* (aR + pR))
+        {
+            Debug.Log("置けませんでした");
+            return false;
+        }
+        
         return true;
     }
 }
