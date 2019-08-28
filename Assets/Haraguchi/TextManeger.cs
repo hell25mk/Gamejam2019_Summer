@@ -22,8 +22,8 @@ public class TextManeger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //rollOverCnt= PlayerMgr.falledCnt;
-        rollOverCnt = 13;//仮に  回こけた
+        rollOverCnt= PlayerMgr.falledCnt;
+        //rollOverCnt = 13;//仮に  回こけた
         result = 1;
     }
 

@@ -12,7 +12,7 @@ public class PlayerMgr : MonoBehaviour
     private const float fallTimeCntLimit = 1.0f;    //転んでいるカウントの上限値
 
     private bool isFall;    //転倒フラグ true:転んでいる false:起きている
-    public int falledCnt;     //転んだ回数
+    public static int falledCnt;     //転んだ回数
 
     [SerializeField]
     private float upSpeed;    //速度(縦)
