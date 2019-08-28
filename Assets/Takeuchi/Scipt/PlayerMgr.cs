@@ -33,6 +33,7 @@ public class PlayerMgr : MonoBehaviour
     {
         fallCnt = 0.0f;
         fallTimeCnt = 0.0f;
+        falledCnt = 0;
         isFall = false;
 
         upSpeed = 0.02f;
