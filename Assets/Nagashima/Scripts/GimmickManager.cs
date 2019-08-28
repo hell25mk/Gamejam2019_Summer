@@ -33,7 +33,7 @@ public class GimmickManager : MonoBehaviour
     {
 
         //テスト　キーボードで生成（ただしマウスカーソルの座標に生成する）
-        if (Input.GetKeyDown(KeyCode.W))
+        /*if (Input.GetKeyDown(KeyCode.W))
         {
             //カメラのz座標位置に生成すると画像が見えなくなるので0に修正する
             Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -57,7 +57,27 @@ public class GimmickManager : MonoBehaviour
             Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouse.z = 0.0f;
             CreateGimmick(eGimmickType.Gimmick_Skateboard, mouse);
+        }*/
+
+        //マウス
+        /*if (Input.GetMouseButtonDown(0))
+        {
+            Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouse.z = 0.0f;
+            CreateGimmick(eGimmickType.Gimmick_Skateboard, mouse);
         }
+        if (Input.GetMouseButtonDown(1))
+        {
+            Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouse.z = 0.0f;
+            CreateGimmick(eGimmickType.Gimmick_Daruma, mouse);
+        }
+        if (Input.GetMouseButtonDown(2))
+        {
+            Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouse.z = 0.0f;
+            CreateGimmick(eGimmickType.Gimmick_BalanceBall, mouse);
+        }*/
 
     }
 
