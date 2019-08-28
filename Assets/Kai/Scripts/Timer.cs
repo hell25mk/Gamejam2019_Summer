@@ -12,12 +12,17 @@ public class Timer : MonoBehaviour
 
     Text timerText;
 
+    [SerializeField]
+    private GameObject gameManager;
+    private SceneMoveManager sceneManger;
     void Start()
     {
         totalTime = minute * 60 + seconds;
         seconds++;
         oldSeconds = 0f;
         timerText = GetComponentInChildren<Text>();
+
+        sceneManger = gameManager.GetComponent<SceneMoveManager>();
     }
 
     void Update()
@@ -57,5 +62,6 @@ public class Timer : MonoBehaviour
     IEnumerator ChangeScene()
     {
         yield return new WaitForSeconds(3);
+        sceneManger.LoadScene();
     }
 }

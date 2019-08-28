@@ -62,10 +62,20 @@ public class PlayerMgr : MonoBehaviour
             {
                 MoveLeft();     //二人とも左に移動
             }
-            // W + →
+            // D + →
             if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.RightArrow))
             {
                 MoveRight();    //二人とも右に移動
+            }
+            // W + ↑
+            if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.UpArrow))
+            {
+                MoveUp();    //二人とも右に移動
+            }
+            // S + ↓
+            if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.DownArrow))
+            {
+                MoveDown();    //二人とも右に移動
             }
         }
 
@@ -78,12 +88,14 @@ public class PlayerMgr : MonoBehaviour
     {
         // 画面左下のワールド座標をビューポートから取得
         Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0)) / 2;
-
+        Vector2 min2 = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
         // 画面右上のワールド座標をビューポートから取得
         Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1)) / 1.8f;
+        Vector2 max2 = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
 
         // プレイヤーの位置が画面内に収まるように制限をかける
         pos.x = Mathf.Clamp(pos.x, min.x, max.x);
+        pos.y = Mathf.Clamp(pos.y, min2.y, max2.y);
     }
 
     //状態管理
@@ -102,12 +114,6 @@ public class PlayerMgr : MonoBehaviour
             {
                 Fall();
             }
-        }
-
-        //前に進む
-        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.UpArrow))
-        {
-            //upSpeed *= 
         }
 
         //転んでいる時間の処理
@@ -166,7 +172,16 @@ public class PlayerMgr : MonoBehaviour
     {
         pos.x += slideSpeed;
     }
-
+    //上
+    void MoveUp()
+    {
+        pos.y += slideSpeed;
+    }
+    //下
+    void MoveDown()
+    {
+        pos.y -= slideSpeed;
+    }
     public bool GetIsFall()
     {
         return isFall;
