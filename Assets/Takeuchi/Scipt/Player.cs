@@ -40,4 +40,6 @@ public class Player : MonoBehaviour
     {
         pos.x -= slideSpeed;
     }
+
+
 }

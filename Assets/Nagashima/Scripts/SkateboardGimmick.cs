@@ -13,12 +13,10 @@ public class SkateboardGimmick : BaseGimmick
     // Start is called before the first frame update
     void Start()
     {
-
-        transform.position = new Vector3(this.transform.position.x, 10.0f, 0.0f);
-
-        Vector3 vector = transform.position;
-        vector.y = 4.0f;
-        dangerMark = GameObject.Instantiate(dangerMark, vector, Quaternion.identity);
+        
+        dangerMark = GameObject.Instantiate(dangerMark, transform.position, Quaternion.identity);
+        
+        transform.Translate(0.0f, 10.0f, 0.0f);
 
     }
 
@@ -43,7 +41,7 @@ public class SkateboardGimmick : BaseGimmick
                 Destroy(dangerMark);
             }
 
-            transform.Translate(0.0f, -0.8f, 0.0f);
+            transform.Translate(0.0f, -0.2f, 0.0f);
         }
         else
         {

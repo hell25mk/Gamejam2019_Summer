@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95dce39509498a04d8a96a3cf6c0c518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxActiveTime: 420
+  maxActiveTime: 480
   dangerMark: {fileID: 8034879744726227779, guid: 015064e9774a30b4b9c1ca3dbed029db,
     type: 3}
-  startTime: 5
+  startTime: 2.5

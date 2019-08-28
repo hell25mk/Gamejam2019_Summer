@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class PlayerMgr : MonoBehaviour
 {
-    float fallCnt;          //転ぶまでのカウント
+    private float fallCnt;          //転ぶまでのカウント
     [SerializeField]
-    const float fallCntLimit = 0.8f;     //転ぶまでカウントの上限値
-    float fallTimeCnt;         //転んでいる時間のカウント
+    private const float fallCntLimit = 0.8f;     //転ぶまでカウントの上限値
+    private float fallTimeCnt;         //転んでいる時間のカウント
     [SerializeField]
-    const float fallTimeCntLimit = 1.0f;    //転んでいるカウントの上限値
+    private const float fallTimeCntLimit = 1.0f;    //転んでいるカウントの上限値
 
     private bool isFall;    //転倒フラグ true:転んでいる false:起きている
     public int falledCnt;     //転んだ回数
 
     [SerializeField]
     private float upSpeed;    //速度(縦)
+    private float defaultUpSpeed;
     [SerializeField]
     private float slideSpeed;  //速度(横)
     Vector2 pos;            //位置座標
@@ -34,7 +35,8 @@ public class PlayerMgr : MonoBehaviour
         fallTimeCnt = 0.0f;
         isFall = false;
 
-        upSpeed = 0.01f;
+        upSpeed = 0.02f;
+        defaultUpSpeed = upSpeed;
         slideSpeed = 0.02f;
         pos = transform.position;
 
@@ -75,10 +77,10 @@ public class PlayerMgr : MonoBehaviour
     void Clamp()
     {
         // 画面左下のワールド座標をビューポートから取得
-        Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0)) / 3;
+        Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0)) / 2;
 
         // 画面右上のワールド座標をビューポートから取得
-        Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1)) / 3;
+        Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1)) / 1.8f;
 
         // プレイヤーの位置が画面内に収まるように制限をかける
         pos.x = Mathf.Clamp(pos.x, min.x, max.x);
@@ -102,6 +104,12 @@ public class PlayerMgr : MonoBehaviour
             }
         }
 
+        //前に進む
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.UpArrow))
+        {
+            //upSpeed *= 
+        }
+
         //転んでいる時間の処理
         if(isFall == true)
         {
@@ -116,6 +124,7 @@ public class PlayerMgr : MonoBehaviour
         }
     }
 
+    //当たり判定
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(isFall == false)
@@ -166,6 +175,16 @@ public class PlayerMgr : MonoBehaviour
     public float GetUpSpeed()
     {
         return upSpeed;
+    }
+
+    public float GetPosX()
+    {
+        return pos.x;
+    }
+
+    public float GetPosY()
+    {
+        return pos.y;
     }
 
 }

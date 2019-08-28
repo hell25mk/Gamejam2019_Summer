@@ -6,26 +6,41 @@ public class ControllerMove : MonoBehaviour
 {
     // Start is called before the first frame update
     float  AimingSpeed;
-    float TadamaRiyasuto;//達磨の
+
+    [SerializeField]
+    private List<GameObject> gimmikcList = null;
+    [SerializeField]
+    private List<float> maxRiyasutoTime = null;
+
+    private List<float> gimmickRiyasuto;
+
+    GameObject player;
+    PlayerMgr playerMgr;
+
+    /*float TadamaRiyasuto;//達磨の
     float BollRiyasuto;
     float HoleRiyasuto;
-    float WoodRiyasuto;
+    float WoodRiyasuto;*/
 
-    /*[SerializeField]
-    private List<GameObject> key;*/
-
-    public GameObject Tadama;//達磨
+    /*public GameObject Tadama;//達磨
     public GameObject Boll;  //ボール
     public GameObject Hole;  //穴
-    public GameObject Wood;  //木
+    public GameObject Wood;  //木*/
+
     void Start()
     {
-        AimingSpeed = 0.02f;
-        TadamaRiyasuto = 3f;
-        BollRiyasuto = 5f;
-        HoleRiyasuto = 10f;
-        WoodRiyasuto = 15f;
-        
+        AimingSpeed = 0.05f;
+        gimmickRiyasuto = new List<float>
+        {
+            maxRiyasutoTime[(int)eGimmickType.Gimmick_Daruma],
+            maxRiyasutoTime[(int)eGimmickType.Gimmick_BalanceBall],
+            maxRiyasutoTime[(int)eGimmickType.Gimmick_Bicycle],
+            maxRiyasutoTime[(int)eGimmickType.Gimmick_Skateboard],
+        };
+
+        player = GameObject.Find("player");
+        playerMgr = player.GetComponent<PlayerMgr>();
+
     }
 
     // Update is called once per frame
@@ -34,10 +49,15 @@ public class ControllerMove : MonoBehaviour
         Transform myTransform = this.transform;
         Vector3 AimingPosition = myTransform.position;
 
-        TadamaRiyasuto += Time.deltaTime;
+        for (int i = 0; i < gimmickRiyasuto.Count; i++)
+        {
+            gimmickRiyasuto[i] += Time.deltaTime;
+        }
+
+        /*TadamaRiyasuto += Time.deltaTime;
         BollRiyasuto += Time.deltaTime;
         HoleRiyasuto += Time.deltaTime; ;
-        WoodRiyasuto += Time.deltaTime;
+        WoodRiyasuto += Time.deltaTime;*/
 
         //axis
         if (Input.GetAxis("Axis 1") > 0f || Input.GetAxis("Axis 4") > 0f || Input.GetAxis("Axis 5") > 0f)
@@ -63,41 +83,52 @@ public class ControllerMove : MonoBehaviour
         myTransform.position = AimingPosition;
 
         //buttons
-        if (Input.GetKeyDown(KeyCode.Joystick1Button0) == true)
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0))
         {
-            //Debug.Log("kuro");
-            if (TadamaRiyasuto >= 3)
+            Debug.Log("kuro");
+            if (gimmickRiyasuto[(int)eGimmickType.Gimmick_Daruma] >= maxRiyasutoTime[(int)eGimmickType.Gimmick_Daruma])
             {
-                Instantiate(Tadama, AimingPosition, Quaternion.identity);
-                TadamaRiyasuto = 0f;
+                Instantiate(gimmikcList[(int)eGimmickType.Gimmick_Daruma], AimingPosition, Quaternion.identity);
+                gimmickRiyasuto[(int)eGimmickType.Gimmick_Daruma] = 0f;
+               
             }
         }
-        if (Input.GetKeyDown(KeyCode.Joystick1Button1) == true)
+        if (Input.GetKeyDown(KeyCode.Joystick1Button1))
         {
-            //Debug.Log("kiiro");
-            if (BollRiyasuto >= 5)
+            Debug.Log("kiiro");
+            if (gimmickRiyasuto[(int)eGimmickType.Gimmick_BalanceBall] >= maxRiyasutoTime[(int)eGimmickType.Gimmick_BalanceBall])
             {
-                Instantiate(Boll, AimingPosition, Quaternion.identity);
-                BollRiyasuto = 0f;
+                Instantiate(gimmikcList[(int)eGimmickType.Gimmick_BalanceBall], AimingPosition, Quaternion.identity);
+                gimmickRiyasuto[(int)eGimmickType.Gimmick_BalanceBall] = 0f;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Joystick1Button2) == true)
+        if (Input.GetKeyDown(KeyCode.Joystick1Button2))
         {
-            //Debug.Log("ao");
-            if (HoleRiyasuto >= 10)
+            Debug.Log("ao");
+            if (gimmickRiyasuto[(int)eGimmickType.Gimmick_Bicycle] >= maxRiyasutoTime[(int)eGimmickType.Gimmick_Bicycle])
             {
-                Instantiate(Hole, AimingPosition, Quaternion.identity);
-                HoleRiyasuto = 0f;
+                Instantiate(gimmikcList[(int)eGimmickType.Gimmick_Bicycle], AimingPosition, Quaternion.identity);
+                gimmickRiyasuto[(int)eGimmickType.Gimmick_Bicycle] = 0f;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Joystick1Button3) == true)
+        if (Input.GetKeyDown(KeyCode.Joystick1Button3))
         {
-            //Debug.Log("aka");
-            if (WoodRiyasuto >= 15)
+            Debug.Log("aka");
+            if (gimmickRiyasuto[(int)eGimmickType.Gimmick_Skateboard] >= maxRiyasutoTime[(int)eGimmickType.Gimmick_Skateboard])
             {
-                Instantiate(Wood, AimingPosition, Quaternion.identity);
-                WoodRiyasuto = 0f;
+                Instantiate(gimmikcList[(int)eGimmickType.Gimmick_Skateboard], AimingPosition, Quaternion.identity);
+                gimmickRiyasuto[(int)eGimmickType.Gimmick_Skateboard] = 0f;
             }
         }
+    }
+
+    bool GimickPushCheck()
+    {
+        //Transform pos = this.transform;
+        //Transform playerPos;
+        //float playerPos.x = playerMgr.GetPosX;
+
+        return false;
+        return true;
     }
 }
