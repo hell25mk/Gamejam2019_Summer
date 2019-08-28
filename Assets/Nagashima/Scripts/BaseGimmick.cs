@@ -25,7 +25,22 @@ public class BaseGimmick : MonoBehaviour
 
     }
 
-    public virtual void OnUpdate()
+    /// <summary>
+    /// 子から呼び出しやすいように必要最低限をまとめた処理
+    /// </summary>
+    protected void OnUpdate()
+    {
+
+        ActiveUpdate();
+
+        Move();
+
+    }
+
+    /// <summary>
+    /// 一定時間経過で自身のオブジェクトを削除
+    /// </summary>
+    public void ActiveUpdate()
     {
 
         activeTimer++;
@@ -37,6 +52,15 @@ public class BaseGimmick : MonoBehaviour
             Debug.Log("寿命があぁぁ");
             return;
         }
+
+    }
+
+    /// <summary>
+    /// オブジェクトを移動させる
+    /// 実装は継承したクラス内で作る
+    /// </summary>
+    protected virtual void Move()
+    {
 
     }
 

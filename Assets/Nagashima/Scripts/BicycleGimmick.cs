@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BalanceBallGimmick : BaseGimmick
+public class BicycleGimmick : BaseGimmick
 {
+
+    [SerializeField]
+    float startTime;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -19,12 +23,19 @@ public class BalanceBallGimmick : BaseGimmick
     }
 
     /// <summary>
-    /// 左方向へ直進する
+    /// 一定時間停止し、その後発射する
     /// </summary>
     protected override void Move()
     {
 
-        transform.Translate(-0.05f, 0.0f, 0.0f);
+        if (startTime <= 0.0f)
+        {
+            transform.Translate(0.1f, 0.05f, 0.0f);
+        }
+        else
+        {
+            startTime -= Time.deltaTime;
+        }
 
     }
 

@@ -9,6 +9,8 @@ public enum eGimmickType : int
 {
     Gimmick_Daruma = 0,
     Gimmick_BalanceBall,
+    Gimmick_Bicycle,
+    Gimmick_Skateboard,
 }
 
 public class GimmickManager : MonoBehaviour
@@ -30,21 +32,31 @@ public class GimmickManager : MonoBehaviour
     public void Update()
     {
 
-        //テスト　マウスで生成できるようにしている
-        if (Input.GetMouseButtonDown(0))
+        //テスト　キーボードで生成（ただしマウスカーソルの座標に生成する）
+        if (Input.GetKeyDown(KeyCode.W))
         {
             //カメラのz座標位置に生成すると画像が見えなくなるので0に修正する
             Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouse.z = 0.0f;
             CreateGimmick(eGimmickType.Gimmick_Daruma, mouse);
         }
-
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            //カメラのz座標位置に生成すると画像が見えなくなるので0に修正する
             Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouse.z = 0.0f;
             CreateGimmick(eGimmickType.Gimmick_BalanceBall, mouse);
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouse.z = 0.0f;
+            CreateGimmick(eGimmickType.Gimmick_Bicycle, mouse);
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mouse.z = 0.0f;
+            CreateGimmick(eGimmickType.Gimmick_Skateboard, mouse);
         }
 
     }
@@ -56,6 +68,13 @@ public class GimmickManager : MonoBehaviour
     /// <param name="vector">生成位置</param>
     public void CreateGimmick(eGimmickType type, Vector3 vector)
     {
+
+        //リストに存在しなかった場合処理を終了する
+        if(gimmickList.Count <= (int)type)
+        {
+            Debug.LogError("リストにデータが存在しません");
+            return;
+        }
 
         GameObject.Instantiate(gimmickList[(int)type], vector, Quaternion.identity);
 
