@@ -99,7 +99,11 @@ public class PlayerMgr : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Fall();
+        if(isFall == false)
+        {
+            Fall();
+        }
+
     }
 
     //転ぶ
@@ -135,6 +139,14 @@ public class PlayerMgr : MonoBehaviour
         pos.x += slideSpeed;
     }
 
+    public bool GetIsFall()
+    {
+        return isFall;
+    }
 
+    public float GetUpSpeed()
+    {
+        return upSpeed;
+    }
 
 }
