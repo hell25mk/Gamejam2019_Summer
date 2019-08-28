@@ -98,6 +98,7 @@ MonoBehaviour:
   falledCnt: 0
   upSpeed: 0
   slideSpeed: 0
+  clampDiv: 0
   fallSprite: {fileID: 21300000, guid: 839e3884cf900e74fa06cd699f9b65db, type: 3}
   run: {fileID: 21300000, guid: a73dcc3aaa9c9834cadef1ae0f677c11, type: 3}
 --- !u!61 &6269404277967467736

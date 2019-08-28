@@ -20,6 +20,9 @@ public class PlayerMgr : MonoBehaviour
     private float slideSpeed;  //速度(横)
     Vector2 pos;            //位置座標
 
+    [SerializeField]
+    private float clampDiv; //移動可能範囲の割る数(カメラのサイズを基に割る)
+
     SpriteRenderer MainSpriteRenderer;
     public Sprite fallSprite;
     public Sprite run;
@@ -63,6 +66,22 @@ public class PlayerMgr : MonoBehaviour
                 MoveRight();    //二人とも右に移動
             }
         }
+
+        //画面外処理
+        Clamp();
+    }
+
+    //画面外処理
+    void Clamp()
+    {
+        // 画面左下のワールド座標をビューポートから取得
+        Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0)) / 3;
+
+        // 画面右上のワールド座標をビューポートから取得
+        Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1)) / 3;
+
+        // プレイヤーの位置が画面内に収まるように制限をかける
+        pos.x = Mathf.Clamp(pos.x, min.x, max.x);
     }
 
     //状態管理
