@@ -79,10 +79,7 @@ public class PlayerMgr : MonoBehaviour
             //カウントが一定の値を超えたら転ぶ
             if (fallCnt >= fallCntLimit)
             {
-                isFall = true;
-                MainSpriteRenderer.sprite = fallSprite;
-                falledCnt++;
-                fallCnt = 0.0f;
+                Fall();
             }
         }
 
@@ -95,11 +92,31 @@ public class PlayerMgr : MonoBehaviour
             //カウントが一定の値を超えたら起き上がる
             if(fallTimeCnt >= fallTimeCntLimit)
             {
-                isFall = false;
-                MainSpriteRenderer.sprite = run;
-                fallTimeCnt = 0.0f;
+                GetUp();
             }
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Fall();
+    }
+
+    //転ぶ
+    void Fall()
+    {
+        isFall = true;
+        MainSpriteRenderer.sprite = fallSprite;
+        falledCnt++;
+        fallCnt = 0.0f;
+    }
+
+    //起き上がる
+    void GetUp()
+    {
+        isFall = false;
+        MainSpriteRenderer.sprite = run;
+        fallTimeCnt = 0.0f;
     }
 
     //上　自動移動
@@ -117,6 +134,7 @@ public class PlayerMgr : MonoBehaviour
     {
         pos.x += slideSpeed;
     }
+
 
 
 }
