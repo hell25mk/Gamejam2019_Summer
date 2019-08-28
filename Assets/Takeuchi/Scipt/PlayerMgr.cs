@@ -104,7 +104,9 @@ public class PlayerMgr : MonoBehaviour
         // 男：右　女：左  || 男：左　女：右
         // 互いに違う動きをしたら
         if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.LeftArrow) ||
-           Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.RightArrow))
+           Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.RightArrow) ||
+           Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.DownArrow)  ||
+           Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.UpArrow))
         {
             //違う動きをしている時間をカウント
             fallCnt += Time.deltaTime;
