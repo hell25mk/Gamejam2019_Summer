@@ -48,3 +48,6 @@ TagManager:
   - name: Gimmick
     uniqueID: 4062880561
     locked: 0
+  - name: Player
+    uniqueID: 1664030491
+    locked: 0
