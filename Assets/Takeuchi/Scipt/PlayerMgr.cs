@@ -35,7 +35,7 @@ public class PlayerMgr : MonoBehaviour
         fallTimeCnt = 0.0f;
         isFall = false;
 
-        upSpeed = 0.01f;
+        upSpeed = 0.02f;
         defaultUpSpeed = upSpeed;
         slideSpeed = 0.02f;
         pos = transform.position;
@@ -175,6 +175,16 @@ public class PlayerMgr : MonoBehaviour
     public float GetUpSpeed()
     {
         return upSpeed;
+    }
+
+    public float GetPosX()
+    {
+        return pos.x;
+    }
+
+    public float GetPosY()
+    {
+        return pos.y;
     }
 
 }

@@ -14,6 +14,9 @@ public class ControllerMove : MonoBehaviour
 
     private List<float> gimmickRiyasuto;
 
+    GameObject player;
+    PlayerMgr playerMgr;
+
     /*float TadamaRiyasuto;//達磨の
     float BollRiyasuto;
     float HoleRiyasuto;
@@ -34,6 +37,10 @@ public class ControllerMove : MonoBehaviour
             maxRiyasutoTime[(int)eGimmickType.Gimmick_Bicycle],
             maxRiyasutoTime[(int)eGimmickType.Gimmick_Skateboard],
         };
+
+        player = GameObject.Find("player");
+        playerMgr = player.GetComponent<PlayerMgr>();
+
     }
 
     // Update is called once per frame
@@ -113,5 +120,15 @@ public class ControllerMove : MonoBehaviour
                 gimmickRiyasuto[(int)eGimmickType.Gimmick_Skateboard] = 0f;
             }
         }
+    }
+
+    bool GimickPushCheck()
+    {
+        //Transform pos = this.transform;
+        //Transform playerPos;
+        //float playerPos.x = playerMgr.GetPosX;
+
+        return false;
+        return true;
     }
 }
